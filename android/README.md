@@ -89,11 +89,17 @@ android/
 - [x] Unit tests for sync logic
 - [x] Salesforce Connected App setup documentation
 
-### 🔜 Session 3: Voice Integration (PENDING)
-- [ ] Voice input for mood tracking
-- [ ] Voice journaling
-- [ ] Speech-to-text integration
-- [ ] Voice command recognition
+### ✅ Session 3: Voice Integration (COMPLETE)
+- [x] VoiceRecognitionManager for speech-to-text
+- [x] VoiceCommandProcessor for parsing natural language
+- [x] TextToSpeechManager for audio feedback
+- [x] VoiceInputScreen with animated microphone UI
+- [x] Voice mood logging ("my mood is 7")
+- [x] Voice win entries ("log a win: finished workout")
+- [x] Voice journaling support
+- [x] Runtime permission handling (RECORD_AUDIO)
+- [x] Navigation with FloatingActionButton
+- [x] Unit tests for command parsing (24 tests)
 
 ### 🔜 Session 4: UI Polish (PENDING)
 - [ ] Full CRUD screens for all entities
