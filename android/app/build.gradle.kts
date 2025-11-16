@@ -90,6 +90,9 @@ dependencies {
     // WorkManager
     implementation("androidx.work:work-runtime-ktx:2.9.0")
 
+    // DataStore (Preferences)
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
     // Security (Encryption)
     implementation("androidx.security:security-crypto:1.1.0-alpha06")
 

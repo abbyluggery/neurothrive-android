@@ -47,17 +47,21 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NeuroThriveTheme {
+            var darkTheme by remember { mutableStateOf(false) }
+
+            com.neurothrive.assistant.ui.theme.NeuroThriveTheme(darkTheme = darkTheme) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    NeuroThriveApp(
+                    NeuroThriveAppWithNav(
                         viewModel = viewModel,
                         onLoginClick = {
                             val intent = Intent(this, OAuthActivity::class.java)
                             oAuthLauncher.launch(intent)
-                        }
+                        },
+                        darkTheme = darkTheme,
+                        onThemeChange = { darkTheme = it }
                     )
                 }
             }
@@ -144,10 +148,4 @@ data class HomeUiState(
     val dailyRoutineCount: Int = 0
 )
 
-@Composable
-fun NeuroThriveTheme(content: @Composable () -> Unit) {
-    MaterialTheme(
-        colorScheme = lightColorScheme(),
-        content = content
-    )
-}
+// Theme moved to ui/theme/Theme.kt
