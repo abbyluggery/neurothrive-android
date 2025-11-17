@@ -16,6 +16,13 @@ data class DailyRoutine(
     val hydrationOunces: Int? = null,
     val mealsEaten: Int? = null,
     val journalEntry: String? = null,
+    // Session 5: Morning routine fields
+    val wakeTime: String? = null, // HH:mm format
+    val sleepTime: String? = null, // HH:mm format (previous night)
+    val bedTime: String? = null, // HH:mm format
+    val morningMood: Int? = null, // 1-10
+    val morningEnergy: Int? = null, // 1-10
+    val morningPain: Int? = null, // 1-10
     val syncedToSalesforce: Boolean = false,
     val salesforceId: String? = null
 )

@@ -4,16 +4,14 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.UUID
 
-@Entity(tableName = "mood_entries")
-data class MoodEntry(
+@Entity(tableName = "meal_entries")
+data class MealEntry(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
-    val moodLevel: Int, // 1-10
-    val energyLevel: Int, // 1-10
-    val painLevel: Int, // 1-10
+    val mealType: String, // breakfast, lunch, dinner, snack
+    val description: String,
     val timestamp: Long = System.currentTimeMillis(),
-    val notes: String? = null,
-    // Session 5: Time of day tracking
-    val timeOfDay: String? = null, // morning, afternoon, evening
+    val photoUri: String? = null,
+    val recipeId: String? = null,
     val syncedToSalesforce: Boolean = false,
     val salesforceId: String? = null
 )

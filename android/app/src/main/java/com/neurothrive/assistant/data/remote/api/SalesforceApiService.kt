@@ -1,5 +1,6 @@
 package com.neurothrive.assistant.data.remote.api
 
+import com.neurothrive.assistant.data.models.*
 import com.neurothrive.assistant.data.remote.models.*
 import retrofit2.Response
 import retrofit2.http.*
@@ -78,8 +79,58 @@ interface SalesforceApiService {
         @Query("q") query: String
     ): Response<SalesforceQueryResponse<SalesforceDailyRoutine>>
 
+    // ==================== IMPOSTER SYNDROME (Session 6) ====================
+
+    @POST("/services/data/v59.0/sobjects/Imposter_Syndrome_Session__c")
+    suspend fun createImposterSession(
+        @Body session: SalesforceImposterSession
+    ): Response<SalesforceCreateResponse>
+
+    @PATCH("/services/data/v59.0/sobjects/Imposter_Syndrome_Session__c/{id}")
+    suspend fun updateImposterSession(
+        @Path("id") salesforceId: String,
+        @Body session: SalesforceImposterSession
+    ): Response<Unit>
+
+    @GET("/services/data/v59.0/query")
+    suspend fun queryImposterSessions(
+        @Query("q") query: String
+    ): Response<SalesforceQueryResponse<SalesforceImposterSession>>
+
+    // ==================== RECIPES (Session 7) ====================
+
+    @GET("/services/data/v59.0/query")
+    suspend fun queryRecipes(
+        @Query("q") query: String
+    ): SalesforceQueryResponse<SalesforceRecipe>
+
+    @GET("/services/data/v59.0/query")
+    suspend fun queryIngredients(
+        @Query("q") query: String
+    ): SalesforceQueryResponse<SalesforceIngredient>
+
+    // ==================== COUPONS (Session 7) ====================
+
+    @GET("/services/data/v59.0/query")
+    suspend fun queryCoupons(
+        @Query("q") query: String
+    ): SalesforceQueryResponse<SalesforceCoupon>
+
     // ==================== GENERAL ====================
 
     @GET("/services/data/v59.0/sobjects")
     suspend fun getSObjects(): Response<Any>
 }
+
+// New model for Imposter Syndrome (Session 6)
+data class SalesforceImposterSession(
+    val Thought_Text__c: String,
+    val Believability_Before__c: Int,
+    val Evidence_For__c: String?,
+    val Evidence_Against__c: String?,
+    val Alternative_Perspective__c: String?,
+    val Reframe_Suggestion__c: String?,
+    val Believability_After__c: Int?,
+    val Pattern_Detected__c: String?,
+    val Timestamp__c: String
+)

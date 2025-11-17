@@ -183,19 +183,64 @@ Key libraries:
 
 See `android/app/build.gradle.kts` for complete dependency list.
 
+### Session 5: Morning Routine & Timed Check-ins ✅ COMPLETE
+- **Morning Routine Screen**: Track wake/sleep/bed times with time pickers
+- **Morning Mood Tracking**: Log mood, energy, and pain levels upon waking
+- **Timed Mood Check-ins**: Auto-detected time-of-day check-ins (morning/afternoon/evening)
+- **Smart Notifications**: WorkManager-powered reminders at 8 AM, 2 PM, and 7 PM
+- **Database Migration v1→v2**: Added time tracking fields to DailyRoutine and MoodEntry
+- **TimeUtils**: Time-of-day detection and greeting generation
+
+### Session 6: Box Breathing & Therapy ✅ COMPLETE
+- **Box Breathing Exercise**: 4-7-8 breathing pattern with animated visual guide
+- **Breathing Circle Animation**: Color-coded phases (green inhale, blue exhale, amber hold)
+- **FYF Therapy Workflow**: Find Your Facts imposter syndrome therapy (6-step process)
+- **Believability Tracking**: Before/after ratings to measure cognitive reframing success
+- **Therapy Dashboard**: Quick access to breathing exercises and FYF sessions with statistics
+- **Database Migration v2→v3**: New ImposterSyndromeSession entity
+- **Pattern Detection**: Track recurring negative thought patterns
+
+### Session 7: Meal Planning & Coupons ✅ COMPLETE
+- **Recipe Browser**: Search and filter 21+ recipes synced from Salesforce
+- **Recipe Details**: Full ingredient lists, prep/cook times, and instructions
+- **Meal Tracking**: Log breakfast, lunch, dinner, and snacks with optional photos
+- **7-Day Meal Planner**: Weekly meal calendar with recipe assignments
+- **Grocery List Generator**: Auto-generate shopping lists from meal plans
+- **Category Organization**: Groceries grouped by produce, dairy, meat, grains
+- **Coupon Matching**: Automatically match active coupons to grocery items
+- **Cost Estimation**: Track estimated prices and total grocery costs
+- **Database Migration v3→v4**: Added 7 new entities (Recipe, Ingredient, MealPlan, MealPlanItem, GroceryItem, Coupon, MealEntry)
+- **Salesforce Sync**: Bi-directional sync for recipes, meal plans, and coupons
+
+### Session 8: Claude AI & Polish ✅ COMPLETE
+- **Claude AI Integration**: Claude 3.5 Sonnet API for personalized insights
+- **Mood Insights**: AI-powered analysis of weekly mood trends and patterns
+- **Win Analysis**: Recognition of achievement patterns and encouragement
+- **Therapy Insights**: FYF session progress analysis with supportive recommendations
+- **Insights Dashboard**: Beautiful card-based UI showing all AI-generated insights
+- **Custom Prompts**: Support for user-initiated AI conversations
+- **Loading States**: Proper loading, empty, and error states across all screens
+- **Enhanced UX**: Pull-to-refresh, haptic feedback, and smooth animations
+
 ## Development Sessions
 
 - ✅ **Session 1**: Database foundation with Room, encryption, entities, DAOs, tests
 - ✅ **Session 2**: Salesforce OAuth 2.0 integration, API client, background sync
 - ✅ **Session 3**: Voice integration with speech-to-text and TTS
 - ✅ **Session 4**: UI polish with CRUD screens, dark mode, settings, navigation
+- ✅ **Session 5**: Morning routine & timed check-ins (3x daily notifications)
+- ✅ **Session 6**: Box breathing (4-7-8) & FYF imposter syndrome therapy
+- ✅ **Session 7**: Meal planning, recipes, grocery lists, coupon matching
+- ✅ **Session 8**: Claude AI insights, loading states, final polish
 
 ## Platform Validation
 
 This is a **native Android application** built with Kotlin:
-- ✅ 43 Kotlin (.kt) files
+- ✅ 82 Kotlin (.kt) files (added 39 new files in Sessions 5-8)
 - ✅ 0 Salesforce Apex (.cls) files
 - ✅ 0 Salesforce metadata files
+- ✅ Database version 4 (migrated from v1→v2→v3→v4)
+- ✅ 12 entities, 12 DAOs, complete CRUD operations
 
 ## License
 

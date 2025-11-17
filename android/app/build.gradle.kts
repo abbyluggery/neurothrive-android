@@ -19,6 +19,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "SALESFORCE_BASE_URL", "\"https://abbyluggery179.my.salesforce.com\"")
+        buildConfigField("String", "CLAUDE_API_KEY", "\"${project.findProperty("CLAUDE_API_KEY") ?: ""}\"")
     }
 
     buildTypes {
@@ -109,6 +110,14 @@ dependencies {
 
     // Logging
     implementation("com.jakewharton.timber:timber:5.0.1")
+
+    // NEW for Sessions 5-8
+
+    // Image loading for meal photos (Session 7)
+    implementation("io.coil-kt:coil-compose:2.5.0")
+
+    // Date/time handling (Session 7)
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.1")
 
     // Testing
     testImplementation("junit:junit:4.13.2")

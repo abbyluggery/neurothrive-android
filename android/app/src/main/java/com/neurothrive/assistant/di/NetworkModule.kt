@@ -1,14 +1,17 @@
 package com.neurothrive.assistant.di
 
 import com.google.gson.Gson
+import com.neurothrive.assistant.BuildConfig
 import com.neurothrive.assistant.auth.OAuthManager
 import com.neurothrive.assistant.auth.TokenStorage
 import com.neurothrive.assistant.data.remote.api.AuthInterceptor
+import com.neurothrive.assistant.data.remote.api.ClaudeApiService
 import com.neurothrive.assistant.data.remote.api.SalesforceApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -20,6 +23,10 @@ import javax.inject.Singleton
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class SalesforceRetrofit
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class ClaudeRetrofit
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
@@ -96,5 +103,46 @@ object NetworkModule {
         @SalesforceRetrofit retrofit: Retrofit
     ): SalesforceApiService {
         return retrofit.create(SalesforceApiService::class.java)
+    }
+
+    // ==================== CLAUDE API (Session 8) ====================
+
+    @Provides
+    @Singleton
+    fun provideClaudeAuthInterceptor(): Interceptor {
+        return Interceptor { chain ->
+            val request = chain.request().newBuilder()
+                .addHeader("x-api-key", BuildConfig.CLAUDE_API_KEY)
+                .addHeader("Content-Type", "application/json")
+                .build()
+            chain.proceed(request)
+        }
+    }
+
+    @Provides
+    @Singleton
+    @ClaudeRetrofit
+    fun provideClaudeRetrofit(
+        @BaseOkHttpClient baseClient: OkHttpClient,
+        claudeAuthInterceptor: Interceptor,
+        gson: Gson
+    ): Retrofit {
+        val claudeClient = baseClient.newBuilder()
+            .addInterceptor(claudeAuthInterceptor)
+            .build()
+
+        return Retrofit.Builder()
+            .baseUrl("https://api.anthropic.com/")
+            .client(claudeClient)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideClaudeApiService(
+        @ClaudeRetrofit retrofit: Retrofit
+    ): ClaudeApiService {
+        return retrofit.create(ClaudeApiService::class.java)
     }
 }
